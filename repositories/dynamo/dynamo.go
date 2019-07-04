@@ -11,7 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 
 	"github.com/davidtstafford/golang-doggos/models"
-	repo "github.com/davidtstafford/golang-doggos/repositories"
 )
 
 type dynamoRepo struct {
@@ -23,7 +22,7 @@ var (
 	awsRegion        string
 )
 
-func NewClient() (repo.DBClient, error) {
+func NewClient() (*dynamoRepo, error) {
 
 	loadOSEnvs()
 

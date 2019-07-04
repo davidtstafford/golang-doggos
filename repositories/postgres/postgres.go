@@ -9,7 +9,7 @@ import (
 	_ "github.com/lib/pq"
 
 	"github.com/davidtstafford/golang-doggos/models"
-	repo "github.com/davidtstafford/golang-doggos/repositories"
+	//repo "github.com/davidtstafford/golang-doggos/repositories"
 )
 
 var (
@@ -24,7 +24,7 @@ type postgresRepo struct {
 	client *sql.DB
 }
 
-func NewClient() (repo.DBClient, error) {
+func NewClient() (*postgresRepo, error) {
 	loadOSEnvs()
 
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)

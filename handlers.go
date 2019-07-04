@@ -8,9 +8,7 @@ import (
 	"net/http"
 
 	mo "github.com/davidtstafford/golang-doggos/models"
-	//repo "github.com/davidtstafford/golang-doggos/repositories/dynamo" 
-	repo "github.com/davidtstafford/golang-doggos/repositories/postgres" 
-	//repo "github.com/davidtstafford/golang-doggos/repositories/dummy" 
+	repo "github.com/davidtstafford/golang-doggos/repositories"
 
 
 )
