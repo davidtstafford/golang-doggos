@@ -1,11 +1,6 @@
-
-
-
-# build stage
 FROM golang as builder
 
 ENV GO111MODULE=on
-
 
 WORKDIR /app
 
@@ -16,15 +11,11 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app/app .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /app/doggos
 
-# final stage
+# ------------------------------------------------------------------------------
+
 FROM scratch
-COPY --from=builder /app/app /app/
+COPY --from=builder /app/doggos /app/
 EXPOSE 7000
-EXPOSE 7001
-
-CMD [ "/app/app" ]
-
-
-
+ENTRYPOINT ["/app/doggos"]

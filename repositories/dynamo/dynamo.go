@@ -23,7 +23,6 @@ var (
 )
 
 func NewClient() (*dynamoRepo, error) {
-
 	loadOSEnvs()
 
 	sess := session.Must(session.NewSession(&aws.Config{

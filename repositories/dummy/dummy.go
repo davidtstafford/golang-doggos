@@ -1,3 +1,6 @@
+//dummy isn't to be consider a mock test.  It's purpose is to allow quick dev against something without
+// having to worry about database conectivity.  In essence by flipping an env variable one doesn't need to worry about
+// db configurations.  Useful for first deploy to ensure other aspects are working
 package dummy
 
 import (
@@ -14,9 +17,6 @@ var (
 )
 
 func NewClient() (*dummyRepo, error) {
-
-	//doggo = models.Doggo{}
-	//doggoList = make(models.Doggos, 0)
 
 	return &dummyRepo{client: `Nope`}, nil
 }

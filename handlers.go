@@ -2,15 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 
 	mo "github.com/davidtstafford/golang-doggos/models"
 	repo "github.com/davidtstafford/golang-doggos/repositories"
-
-
 )
 
 func DoggoIndex(w http.ResponseWriter, r *http.Request) {
@@ -31,8 +28,6 @@ func AddDoggo(w http.ResponseWriter, r *http.Request) {
 	doggo := &mo.Doggo{}
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 
-	fmt.Println(body)
-
 	if err != nil {
 		panic(err)
 	}
@@ -40,7 +35,7 @@ func AddDoggo(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	if err := json.Unmarshal(body, doggo); err != nil {
-		w.WriteHeader(422) // unprocessable entity
+		w.WriteHeader(http.StatusUnprocessableEntity)
 		if err := json.NewEncoder(w).Encode(err); err != nil {
 			panic(err)
 		}
@@ -59,8 +54,6 @@ func DeleteDoggo(w http.ResponseWriter, r *http.Request) {
 	doggo := &mo.Doggo{}
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 
-	fmt.Println(body)
-
 	if err != nil {
 		panic(err)
 	}
@@ -68,7 +61,7 @@ func DeleteDoggo(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	if err := json.Unmarshal(body, doggo); err != nil {
-		w.WriteHeader(422) // unprocessable entity
+		w.WriteHeader(http.StatusUnprocessableEntity)
 		if err := json.NewEncoder(w).Encode(err); err != nil {
 			panic(err)
 		}
@@ -79,7 +72,6 @@ func DeleteDoggo(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	w.WriteHeader(200)
+	w.WriteHeader(http.StatusOK)
 
 }
-
